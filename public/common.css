@@ -1,0 +1,10 @@
+.container.index{
+    width:300px;
+    margin-top:30px;
+}
+
+@media only screen and (max-width:300px){
+    .container.index{
+        width:100%;
+    }
+}
