@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "aormfl123";
+$password = "dydvlf50";
 $mydb = "bbs_infra";
 
 // Create connection
