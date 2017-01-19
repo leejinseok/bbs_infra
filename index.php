@@ -15,7 +15,6 @@
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
     </div>
-
 <script type="text/javascript">
 function onSignIn(frm) {
     var user_id = frm.user_id.value;
