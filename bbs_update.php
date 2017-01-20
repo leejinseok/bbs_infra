@@ -18,8 +18,7 @@ include_once "{$_SERVER['DOCUMENT_ROOT']}/bbs_infra/db/connection.php";
     <h3 class='text-center'>Amicuslex Writing Board Container</h3>
     <div class="row" id="wrapper">
         <form method="post" onsubmit="return submitForm(this)">
-            <input type="hidden" id="_id" value="<?php echo $_SESSION['ss__id'];?>">
-            <input type="hidden" id="bbs_id" value="<?php echo date('Ymdhis'); echo  $_SESSION['ss__id'];?>">
+            <input type="hidden" id="bbs_id" value="">
             <div class="form-group">
                <label for="exampleInputEmail1">제목</label>
                <input type="text" name='title' class="form-control" id="exampleInputEmail1" placeholder="제목">
@@ -80,7 +79,7 @@ function submitForm() {
     var bbs_id = $("#bbs_id").val();
     $.ajax({
         type:'post',
-        url:'./lib/Bbs_save.php',
+        url:'./lib/Bbs_update.php',
         data : {content:content, title:title, bbs_id:bbs_id},
         success : function(response){
             console.log(response);

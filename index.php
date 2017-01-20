@@ -3,7 +3,7 @@
 <?php include_once "{$_SERVER['DOCUMENT_ROOT']}/bbs_infra/partials/head.php"; ?>
 <body>
     <br>
-    <h2 class='text-center'>Amicuslex Board System Infra</h2>
+    <h2 class='text-center'>아미쿠스렉스 게시판 환경</h2>
     <div class="container index">
         <form onsubmit="return onSignIn(this)">
             <div class="form-group">
