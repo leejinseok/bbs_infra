@@ -28,6 +28,9 @@ function onSignIn(frm) {
             if(response == 'true'){
                 window.location.href="./home.php";
             }
+            else{
+                alert('존재하지 않는 계정이거나, 패스워드가 일치하지 않습니다.');
+            }
         },
         error : function(response){
             console.log(response);

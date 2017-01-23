@@ -10,8 +10,7 @@ if($_FILES['file']['name']){
     $destination = "../uploaded/".$filename;
     $location = $_FILES['file']['tmp_name'];
 
-
-    $sql = "INSERT INTO uploaded_file(bbs_id,file_name, regdate) VALUES({$bbs_id},'{$filename}', now())";
+    $sql = "INSERT INTO uploaded_file(bbs_id,file_name,regdate) VALUES({$bbs_id},'{$filename}', now())";
     $result = $conn->query($sql);
     if(move_uploaded_file($location, $destination)){
         echo $filename;

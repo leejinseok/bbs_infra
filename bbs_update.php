@@ -3,6 +3,13 @@
 <?php
 include_once "{$_SERVER['DOCUMENT_ROOT']}/bbs_infra/partials/head.php";
 include_once "{$_SERVER['DOCUMENT_ROOT']}/bbs_infra/db/connection.php";
+$sql = "SELECT * FROM board WHERE _id={$_GET['bbs_id']}";
+$result = $conn->query($sql);
+$data=array();
+while($row = $result->fetch_assoc()){
+    $data['content'] = $row['content'];
+    $data['title'] = $row['title'];
+}
 ?>
 <!-- include summernote css/js-->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
@@ -18,14 +25,16 @@ include_once "{$_SERVER['DOCUMENT_ROOT']}/bbs_infra/db/connection.php";
     <h3 class='text-center'>Amicuslex Writing Board Container</h3>
     <div class="row" id="wrapper">
         <form method="post" onsubmit="return submitForm(this)">
-            <input type="hidden" id="bbs_id" value="">
+            <input type="hidden" id="bbs_id" value="<?php echo $_GET['bbs_id'];?>">
             <div class="form-group">
                <label for="exampleInputEmail1">제목</label>
-               <input type="text" name='title' class="form-control" id="exampleInputEmail1" placeholder="제목">
+               <input type="text" name='title' class="form-control" id="exampleInputEmail1" placeholder="제목" value='<?php echo $data['title'];?>'>
              </div>
              <div class="form-group">
                 <label for="summernote">내용</label>
-                <textarea id="summernote" name='content'></textarea>
+                <textarea id="summernote" name='content'>
+                    <?php echo $data['content']; ?>
+                </textarea>
              </div>
 
             <input type="button" class='btn btn-primary' value='Submit' onclick='submitForm()' >
@@ -82,9 +91,9 @@ function submitForm() {
         url:'./lib/Bbs_update.php',
         data : {content:content, title:title, bbs_id:bbs_id},
         success : function(response){
-            console.log(response);
+            console.log('response',response);
             if(response == '1'){
-                alert('posting successfuly saved!');
+                alert('posting update successfuly saved!');
                 setTimeout(function(){
                     history.go(-1);
                 },500)

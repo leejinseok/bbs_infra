@@ -15,9 +15,15 @@ $result = $conn->query($sql);
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 <style media="screen">
+.content{
+    border:1px solid rgb(193, 193, 193);
+    border-radius:5px;
+    padding:12px;
+}
 </style>
 <body>
 <div class="container bbs-detail">
+
     <h2 class='text-left'>
         <?php echo $row['title'];?>
     </h2>
@@ -25,18 +31,19 @@ $result = $conn->query($sql);
         <?php echo $row['regdate']; ?>
     </p>
 
-    <hr>
-    <div class="content">
-        <?php echo $row['content'];?>
-    </div>
     <?php
-    if( $parent_bbs_user_id == $_SESSION['ss__id']){
+    if( $parent_bbs_user_id == $_SESSION['ss__id'] || $_SESSION["ss_u_level"] == '99'){
         echo "<div style=''>
             <input type='button' value='삭제' onclick='removeBbs({$_GET['_id']})'/>
             <input type='button' value='수정' onclick='updateBbs({$_GET['_id']})'/>
         </div>";
-    }
-     ?>
+    }?>
+    <br>
+
+    <div class="content" >
+        <?php echo $row['content'];?>
+    </div>
+
      <br><br>
     <div class="container row list">
         <?php
@@ -69,7 +76,7 @@ $result = $conn->query($sql);
                 <textarea class='form-control' name="content" value=""></textarea>
             </div>
             <div class="col-xs-3">
-                <input class='form-control' type="submit" name="" value="확인">
+                <input class='form-control' type="submit" value="확인">
             </div>
         </form>
     </div>

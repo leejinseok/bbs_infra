@@ -1,11 +1,24 @@
 function viewDetail(_id) {
     window.location.href='./bbs_detail.php?_id='+_id;
 }
-
 function removeBbs(_id) {
-    alert(_id);
-}
+    if(confirm("해당 게시글을 삭제하시겠습니까?")){
+        $.ajax({
+            url:"./lib/Bbs_remove.php",
+            type:'post',
+            data:{bbs_id:_id},
+            success : function(response){
+                if(response == '1'){
+                    window.location.href='./home.php';
+                }
+            }
+        })
+    }
 
+}
+function updateBbs(_id) {
+    window.location.href='./bbs_update.php?bbs_id='+_id;
+}
 function frmSubmit(frm,type){
     if(type='reply'){
         var replyIdx = $("#replyIdx").val();

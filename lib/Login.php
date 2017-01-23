@@ -10,7 +10,7 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         session_start();
         $_SESSION["ss__id"] = $row["_id"];
-        $_SESSION["ss_u_level"] = $row["u_level"];
+        $_SESSION["ss_u_level"] = $row["u_lev"];
     }
 } else {
     echo "false";
