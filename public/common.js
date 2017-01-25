@@ -37,6 +37,8 @@ function frmSubmit(frm,type){
             url:'./lib/Reply_save.php',
             success : function(response){
                     $(".container.row.list").append(response);
+                    replyIdx = parseInt(replyIdx)+1;
+                    $("#replyIdx").val(replyIdx);
             },
             error : function(response){
                 console.log(response);
@@ -47,19 +49,21 @@ function frmSubmit(frm,type){
 }
 
 function delReply(_id, elIdx) {
-    $.ajax({
-        type:'post',
-        data:{_id:_id},
-        url:'./lib/Reply_remove.php',
-        success : function(response){
-            console.log(response);
-            if(response == 1){
-                alert('reply removed successfully!!');
-                $("#reply-row-"+elIdx).remove();
+    if(confirm("해당 댓글을 삭제하시겠습니까?")){
+        $.ajax({
+            type:'post',
+            data:{_id:_id},
+            url:'./lib/Reply_remove.php',
+            success : function(response){
+                console.log(response);
+                if(response == 1){
+                    alert('reply removed successfully!!');
+                    $("#reply-row-"+elIdx).remove();
+                }
+            },
+            error : function(response){
+                console.log(response);
             }
-        },
-        error : function(response){
-            console.log(response);
-        }
-    })
+        })
+    }
 }

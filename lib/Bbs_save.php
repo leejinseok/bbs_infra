@@ -2,10 +2,10 @@
 include_once "{$_SERVER[DOCUMENT_ROOT]}/bbs_infra/db/connection.php";
 session_start();
 
-$bbs_id = $_POST['bbs_id'];
-$user_id = $_SESSION['ss__id'];
-$title = $_POST['title'];
-$content = $_POST['content'];
+$bbs_id = mysql_real_escape_string($_POST['bbs_id']);
+$user_id = mysql_real_escape_string($_SESSION['ss__id']);
+$title = mysql_real_escape_string($_POST['title']);
+$content = mysql_real_escape_string($_POST['content']);
 
 //save bbs
 $sql = "INSERT INTO board(_id, user_id, title, content, regdate) VALUES($bbs_id,$user_id, '{$title}', '{$content}', now())";

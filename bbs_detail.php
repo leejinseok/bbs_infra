@@ -34,17 +34,17 @@ $result = $conn->query($sql);
     <?php
     if( $parent_bbs_user_id == $_SESSION['ss__id'] || $_SESSION["ss_u_level"] == '99'){
         echo "<div style=''>
-            <input type='button' value='삭제' onclick='removeBbs({$_GET['_id']})'/>
-            <input type='button' value='수정' onclick='updateBbs({$_GET['_id']})'/>
+            <input type='button' value='수정' class='btn' onclick='updateBbs({$_GET['_id']})'/>
+            <input type='button' value='삭제' class='btn btn-danger' onclick='removeBbs({$_GET['_id']})'/>
         </div>";
     }?>
-    <br>
+    <hr>
 
     <div class="content" >
         <?php echo $row['content'];?>
     </div>
 
-     <br><br>
+     <hr>
     <div class="container row list">
         <?php
         $i = 0;
@@ -67,7 +67,7 @@ $result = $conn->query($sql);
         <?php $i++; }?>
         <input type="hidden" id='replyIdx' value="<?php echo $i;?>">
     </div>
-    <br>
+
     <div class="container row edit ">
         <form onsubmit="return frmSubmit(this, 'reply')">
             <input type="hidden" name="user_id" value="<?php echo $_SESSION['ss__id'];?>">

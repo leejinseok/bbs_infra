@@ -4,6 +4,7 @@ include_once "{$_SERVER[DOCUMENT_ROOT]}/bbs_infra/lib/Get_templates.php";
 session_start();
 
 $user_id = $_POST['user_id'];
+// $content = mysqli_real_escape_string($conn,$_POST['content']);
 $content = $_POST['content'];
 $parent_bbs_id = $_POST['parent_bbs_id'];
 
